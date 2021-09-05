@@ -1,88 +1,74 @@
+'use strict';
 
-const numbers = {
-    a: 1,
-    b: 4, 
-    y: {
-        x:7,
-        z:11
+const personalMovieDB = {
+    count: 0,
+    movies: {},
+    actors: {},
+    genres:[],
+    privat: true,
+    start: function () {
+        personalMovieDB.count = prompt('Сколько фильмов вы уже посомтрели?', '');
+
+    while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+        personalMovieDB.count = prompt('Сколько фильмов вы уже посмотрели?', '');
+   }
+ },    
+    remember: function () {
+    for (let i = 0; i < 2; i++) {
+        const a = prompt('Один из последних просмотренных фильмов?', ''),
+              b = prompt('На сколько оцените его?', '');
+
+        if (a != null && b != null && a != '' && b != '' ) {
+            personalMovieDB.movies[a] = b;
+        } else {
+            console.log('error');
+            i--;
+        }
+    }
+},
+    checkMyAnswers: function () {
+    if (personalMovieDB.count < 10) {
+        console.log('Просомотренно мало фильмов');
+    }   else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+            console.log('Вы классический зритель');
+    }  else if (personalMovieDB.count > 30) {
+        console.log('Вы киноман');
+    }
+},
+    showMyDB: function () {
+    if (personalMovieDB.privat == false) {
+        console.log(personalMovieDB);
+    }
+},
+
+    writeYourgenres: function () {
+    for (let i =1; i <2; i++) {
+//     let genre = prompt(`Ваш любимый жанр под номером ${i}`);
+//     if (genre === '' || genre === null) {
+//         i--;
+//     } else {
+//         personalMovieDB.genres[i-1] = genre;
+//     }
+        let genre = prompt(`Введите свои любимые жанры черзе запятую`).toLowerCase();
+        
+        if (genre === '' || genre === null) {
+        i--;
+        } else {
+        personalMovieDB.genres = genre.split(', ');
+        personalMovieDB.genres.sort();
+        }
+    }
+   personalMovieDB.genres.forEach((item, i) => {
+       console.log(`Любимый жанр ${i +1} - это ${item}`);
+   });
+},
+    toggleVisibleMyDB: function () {
+        if (personalMovieDB.privat){
+            personalMovieDB.privat = false;
+        }else {
+            personalMovieDB.privat = true;
+        }
     }
 };
-
-
-function copy (mainObj) {
-    let copyObj = {};
-
-    let key;
-
-    for (key in mainObj) {
-        copyObj[key] = mainObj[key];
-    }  
-    return copyObj;
-}
-
-const newObj = copy(numbers);
-
-newObj.a = 10;
-newObj.y.x = 11;
-
-console.log(numbers);
-console.log(newObj);
-
-//Method to copying the massive 
-
-const passwords = [1, 2, 3];
-
-const copyOfPasswords = passwords.slice();
-
-console.log(copyOfPasswords);
-
-//Method to combining the massives
-
-const code =[1, 2, 3];
-
-const coderData =[4, 5, 6];
-
-const combinating = [...code, ...coderData, 'moreInformation'];
-
-console.log(combinating);
-
-// the same method can help are you to sorting information
-
-function helperSorting (a, b ,c) {
-    console.log(a);
-    console.log(b);
-    console.log(c);
-}
-
-const someInformationFromSomewhere = ['Rinat', '123456', 'Minsk'];
-
-helperSorting(...someInformationFromSomewhere);
-
-// the same way to copying objects
-
-const obj = {
-    one: 1,
-    two: 2,
-    three: 3,
-};
-
-const copyOne = {...obj};
-
-console.log(copyOne);
-
-
-const soldier = {
-    health: 400,
-    armor: 100
-};
-
-// Object.setPrototypeOf(jonh, soldier);
-
-
-const jonh = Object.create(soldier);
-
-console.log(jonh.armor);
-
-
-
+console.log(personalMovieDB);
 
