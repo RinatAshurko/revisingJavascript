@@ -71,3 +71,18 @@ const copyOne = {...obj};
 console.log(copyOne);
 
 
+const soldier = {
+    health: 400,
+    armor: 100
+};
+
+// Object.setPrototypeOf(jonh, soldier);
+
+
+const jonh = Object.create(soldier);
+
+console.log(jonh.armor);
+
+
+
+
