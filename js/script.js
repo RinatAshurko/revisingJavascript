@@ -1,37 +1,22 @@
 'use strict';
 
-// touchstart
-// touchend
-// touchmove
-// touchenter
-// touchleave
-// touchcancel
+// Date 
 
-window.addEventListener('DOMContentLoaded', () => {
-    const box = document.querySelector('.box');
+// const now = new Date();
 
-    box.addEventListener('touchstart', (e) => {
-        e.preventDefault();
+// console.log(now.getFullYear());
 
-        console.log('start');
-        console.log(e.touches);
-        console.log(e.targetTouches);
-    });
-    box.addEventListener('touchend', (e) => {
-        e.preventDefault();
+// console.log(now.getTimezoneOffset());
+// console.log(now.getTime());
+// console.log(now.setHours(18, 40));
 
-        console.log('end');
-    });
-    box.addEventListener('touchmove', (e) => {
-        e.preventDefault();
 
-        console.log(e.targetTouches[0].pageX);
-    });
-   
-});
+let start = new Date();
 
-//touches 
-//targetTouches
-//changedTouches
+for (let i =0; i <10000; i++) {
+    let some =i **3;
+}
 
-// swipe install Hammer.js programm
+let end = new Date();
+
+alert(`Цикл произведен за ${end -start}`);
