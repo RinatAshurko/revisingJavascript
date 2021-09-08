@@ -1,22 +1,27 @@
 'use strict';
 
-// Date 
+// scroll working
 
-// const now = new Date();
+const box = document.querySelector('.box'),
+      btn = document.querySelector('button');
 
-// console.log(now.getFullYear());
+const  width = box.clientWidth,
+       height = box.clientHeight,
+       scrollwidth = box.scrollWidth,
+       scrollheight = box.scrollheight;
 
-// console.log(now.getTimezoneOffset());
-// console.log(now.getTime());
-// console.log(now.setHours(18, 40));
+btn.addEventListener('click', () => {
+    box.style.height = box.scrollHeight + 'px';
+});
+
+console.log(box.getBoundingClientRect().top);
+
+const style = window.getComputedStyle(box);
+
+console.log(style.display);
 
 
-let start = new Date();
+window.scrollBy(0, 400); //-x, y
+window.scrollTo(0, 400);
 
-for (let i =0; i <10000; i++) {
-    let some =i **3;
-}
 
-let end = new Date();
-
-alert(`Цикл произведен за ${end -start}`);
