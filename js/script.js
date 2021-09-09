@@ -1,27 +1,29 @@
 'use strict';
 
-// scroll working
+function User (name, age) {
+    this.name = name;
+    this.age = age;
+    this.human = true;
+    this.hello = function () {
+        console.log(`Hello ${this.name}`);
+    }
+}
+User.prototype.exit = function () {                     //prototype (important)
+    console.log(`Пользователь ${this.name} вышел`);
+};
 
-const box = document.querySelector('.box'),
-      btn = document.querySelector('button');
+const ivan = new User('Ivan', 28),
+      alex = new User('Alex', 20);
 
-const  width = box.clientWidth,
-       height = box.clientHeight,
-       scrollwidth = box.scrollWidth,
-       scrollheight = box.scrollheight;
+alex.exit();
+    
+alex.hello();
+ivan.hello();
 
-btn.addEventListener('click', () => {
-    box.style.height = box.scrollHeight + 'px';
-});
-
-console.log(box.getBoundingClientRect().top);
-
-const style = window.getComputedStyle(box);
-
-console.log(style.display);
+console.log(ivan);
+console.log(alex);
 
 
-window.scrollBy(0, 400); //-x, y
-window.scrollTo(0, 400);
+
 
 
