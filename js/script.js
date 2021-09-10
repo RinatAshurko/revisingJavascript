@@ -1,92 +1,38 @@
 'use strict';
-//1) обычная функция : this = window, но если стоит use strict то  будет - undefined
-function showThis () {
-    console.log(this);
-}
-showThis();
 
-//2) Конетекст у методов - сам обьект
-const data = {
-    a: 5,
-    b: 4,
-    sum: function () {
-        console.log(this);
+class Rectangle {
+    constructor (height, width) {
+        this.height = height;
+        this.width = width;
+    }
+    calcArea() {
+        return this.height * this.width;
     }
 };
-data.sum();
 
-//3) КОнтекст вызова в методе будет undefined 
-const dota = {
-    a: 5,
-    b: 4,
-    sum: function () {
-      function shout () {
-        console.log(this);
-      }
-      shout();
+class ColoredRectangleWithText extends Rectangle {  // super() дает значения с extends Rectangle 
+    constructor (height, width, text, bgColor) {
+        super(height, width);
+        this.text= text;
+        this.bgColor = bgColor;
     }
-};
-dota.sum();
-
-//4) this в конструкторах и классах  - это новый экземпляр обьекта
-function User (name, age) {
-    this.name = name;
-    this.age = age;
-    this.human = true;
-    this.hello = function () {
-        console.log(`Hello ${this.name}`);
+    showMyProps () {
+        console.log(`Текст:${this.text}, цвет: ${this.bgColor}`);
     }
 }
 
-const ivan = new User('Ivan', 23);
+const div = new ColoredRectangleWithText(20, 30, 'Hello', 'red');
 
-//5) Ручная привязки this с функции (bind)
+div.showMyProps();
+console.log(div.calcArea());
 
-function count (num) {
-    return this*num;
-}
+// const square = new Rectangle(10, 20);
+// const long = new Rectangle (20,100);
 
-const double = count.bind(2);
-console.log(double(3));
-console.log(double(12));
-
-
-// call, apply
-function dbl (num) {
-    console.log(this.n + num);
-}
-
-const trh = {
-   n: 3
-};
-
-dbl.call(trh, 2);
-dbl.apply(trh, [12]);
+// console.log(square.calcArea());
+// console.log(long.calcArea());
 
 
-//Practice 
-const btn = document.querySelector('button');
-
-btn.addEventListener('click', function () {
-    console.log(this) //выведется сам обьект btn (при событии клик)
-    this.style.background = 'red'; //кнопка при событии клик, будет перекрашиваться в красный цвет
-});
-
-const obj = {
-    num: 5,
-    sayNumber: function () {
-        const say = () => {
-            console.log(this);  // в ситуации когда классическое написание функции выводило бы undefined, стрелочная ссылается на сам обьект
-        nam();
-        }
-        say();
-    }
-}
-obj.sayNumber();
-
-// возможность сокращение когда за счет стрелочной функции 
-const example = a => a*2;
-console.log(example(10));
 
 
 
