@@ -1,14 +1,13 @@
 'use strict';
 
-const log = function (a, b, ...rest) {
-    console.log(a, b, rest);
-}
+const persone = {
+    name: 'Alex',
+    age: 26
+};
 
-log(1, 2, 'lower', 'loser', 'crouser');
-function double (a, basis = 2) {
-    console.log(a * basis);
-}
-double(3, 3);
+console.log(JSON.stringify(persone));
+console.log(JSON.parse(JSON.stringify(persone)));
+
 
 
 
