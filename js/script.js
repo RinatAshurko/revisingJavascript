@@ -1,13 +1,24 @@
 'use strict';
 
-const persone = 'Alex12';
+const persone = {
+    name: 'Alex',
+    age: 25,
+    get UserAge() {
+        return this.age;
+    },
+    set UserAge(num) {
+        this.age = num
+    }
+};
 
-console.log(persone.replace(/\d/g, '*'));
-console.log(persone.match(/\d/g));
-console.log(persone.search(/\d/g));
+console.log(persone.UserAge);
+console.log(persone.UserAge = 30);
+console.log(persone.UserAge);
 
-console.log(persone.replace(/\D/g, '*'));
-console.log(persone.match(/\D/g));
+
+
+
+
 
 
 
